@@ -366,9 +366,6 @@ export default function Products() {
       {sensors.map((p) => (
         <ProductSection key={p.slug} product={p} />
       ))}
-      {sensors.map((p) => (
-        <ProductSection key={p.slug} product={p} />
-      ))}
 
       {/* WiMate Cloud (matches wimate.in's products page footer panel) */}
       <Section
