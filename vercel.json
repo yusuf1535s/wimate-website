@@ -1,5 +1,7 @@
 {
-  "buildCommand": "cd wimate-app && npm install && npm run build",
+  "framework": "vite",
+  "installCommand": "cd wimate-app && npm install",
+  "buildCommand": "cd wimate-app && npm run build",
   "outputDirectory": "wimate-app/dist",
   "rewrites": [
     {
