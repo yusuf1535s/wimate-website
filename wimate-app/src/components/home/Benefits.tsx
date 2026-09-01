@@ -14,12 +14,12 @@ export default function Benefits() {
           {/* LEFT — accordion */}
           <div className="lg:col-span-7">
             <Reveal>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-800">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-800 dark:text-slate-100">
                 Benefits for you
               </h2>
             </Reveal>
             <Reveal delay={0.08} as="p">
-              <p className="mt-3 text-base sm:text-lg text-ink-600">
+              <p className="mt-3 text-base sm:text-lg text-ink-600 dark:text-white">
                 Click on the applicable category to explore
               </p>
             </Reveal>
@@ -33,8 +33,8 @@ export default function Benefits() {
                       key={it.title}
                       className={`overflow-hidden rounded-2xl border transition-colors ${
                         isOpen
-                          ? "border-wimate-500/30 bg-wimate-50/40"
-                          : "border-paper-200 bg-white"
+                          ? "border-wimate-500/30 dark:border-wimate-500/50 bg-wimate-50/40 dark:bg-slate-900/90"
+                          : "border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900/60"
                       }`}
                     >
                       <button
@@ -45,7 +45,7 @@ export default function Benefits() {
                       >
                         <span
                           className={`font-display text-base sm:text-lg font-semibold ${
-                            isOpen ? "text-wimate-700" : "text-ink-800"
+                            isOpen ? "text-wimate-700 dark:text-wimate-400" : "text-ink-800 dark:text-slate-100"
                           }`}
                         >
                           {it.title}
@@ -53,8 +53,8 @@ export default function Benefits() {
                         <span
                           className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border transition-colors ${
                             isOpen
-                              ? "border-wimate-500/40 bg-white text-wimate-600"
-                              : "border-paper-200 bg-paper-50 text-ink-500"
+                              ? "border-wimate-500/40 bg-white dark:bg-slate-800 text-wimate-600 dark:text-wimate-400"
+                              : "border-paper-200 dark:border-slate-700 bg-paper-50 dark:bg-slate-800 text-ink-500 dark:text-white"
                           }`}
                         >
                           {isOpen ? (
@@ -73,13 +73,13 @@ export default function Benefits() {
                             transition={{ duration: 0.22 }}
                             className="overflow-hidden"
                           >
-                            <ul className="space-y-2 px-5 pb-5 text-sm text-ink-700">
+                            <ul className="space-y-2 px-5 pb-5 text-sm text-ink-700 dark:text-white">
                               {it.items.map((b: string) => (
                                 <li
                                   key={b}
                                   className="flex items-start gap-2"
                                 >
-                                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500" />
+                                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500 dark:bg-wimate-400" />
                                   <span>{b}</span>
                                 </li>
                               ))}
@@ -97,7 +97,7 @@ export default function Benefits() {
           {/* RIGHT — image */}
           <Reveal className="lg:col-span-5" delay={0.12}>
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-paper-200">
+              <div className="overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 p-2">
                 <img
                   src="/wimate/products/lower-operations.png"
                   alt="Lower operations cost with WiMate"
@@ -107,7 +107,7 @@ export default function Benefits() {
               </div>
               <div
                 aria-hidden
-                className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-full bg-sky-100 blur-2xl"
+                className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-full bg-sky-100 dark:bg-sky-950/40 blur-2xl"
               />
             </div>
           </Reveal>

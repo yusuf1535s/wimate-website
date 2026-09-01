@@ -29,7 +29,7 @@ export function Wordmark({ className = "h-10 w-auto" }: { className?: string }) 
     <span
       className={`inline-flex items-center font-display text-2xl font-bold tracking-tight ${className}`}
     >
-      <span className="text-ink-800">Wi</span>
+      <span className="text-ink-800 dark:text-white">Wi</span>
       <span className="text-wimate-500">Mate</span>
     </span>
   );

@@ -46,12 +46,12 @@ export default function WhyUs() {
       <div className="container-x">
         <div className="max-w-2xl">
           <Reveal>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-800">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-800 dark:text-slate-100">
               Why Us ?
             </h2>
           </Reveal>
           <Reveal delay={0.08} as="p">
-            <p className="mt-4 text-base sm:text-lg text-ink-600">
+            <p className="mt-4 text-base sm:text-lg text-ink-600 dark:text-white">
               We are committed to resolving the challenges faced by you.
             </p>
           </Reveal>
@@ -60,14 +60,14 @@ export default function WhyUs() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((it, i) => (
             <Reveal key={it.title} delay={i * 0.06}>
-              <article className="group h-full rounded-2xl border border-paper-200 bg-white p-7 shadow-soft-sm">
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-wimate-50 text-wimate-600">
+              <article className="group h-full rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-7 shadow-soft-sm">
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-wimate-50 dark:bg-slate-800 text-wimate-600 dark:text-wimate-400">
                   <it.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold text-ink-800">
+                <h3 className="mt-5 font-display text-lg font-semibold text-ink-800 dark:text-slate-100">
                   {it.title}
                 </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-ink-600">
+                <p className="mt-2 text-[14px] leading-relaxed text-ink-600 dark:text-white">
                   {it.description}
                 </p>
               </article>

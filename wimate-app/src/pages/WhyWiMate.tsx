@@ -60,11 +60,11 @@ export default function WhyWiMate() {
     <>
       {/* Breadcrumb */}
       <div className="container-x pt-32 sm:pt-40">
-        <nav aria-label="Breadcrumb" className="text-sm text-ink-500">
+        <nav aria-label="Breadcrumb" className="text-sm text-ink-500 dark:text-slate-400">
           <ol className="flex items-center gap-1.5">
             <li><Link to="/" className="hover:text-wimate-600">Home</Link></li>
             <li aria-hidden>/</li>
-            <li className="text-ink-700">About Us</li>
+            <li className="text-ink-700 dark:text-white">About Us</li>
           </ol>
         </nav>
       </div>
@@ -77,15 +77,15 @@ export default function WhyWiMate() {
           </Reveal>
           <div className="mt-6 grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
             <Reveal className="lg:col-span-7">
-              <p className="text-base sm:text-lg leading-relaxed text-ink-700">
+              <p className="text-base sm:text-lg leading-relaxed text-ink-700 dark:text-white">
                 {aboutPage.intro}
               </p>
-              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-700">
+              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-700 dark:text-white">
                 <Link to="/cloudtesla" className="font-semibold text-wimate-600 hover:text-wimate-700">Cloudtesla</Link>
                 {" "}
                 {aboutPage.cloudtesla.replace(/^Cloudtesla\s+/, "")}
               </p>
-              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-700">
+              <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-700 dark:text-white">
                 <Link to="/products#unifier-300" className="font-semibold text-wimate-600 hover:text-wimate-700">Unifier</Link>
                 {" "}
                 {aboutPage.unifier.replace(/^\*?\*?Unifier\s+/, "").replace(/\*?\*?$/, "")}
@@ -116,8 +116,8 @@ export default function WhyWiMate() {
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 0.05}>
                 <div className="card card-hover h-full p-6">
-                  <h3 className="h-display text-lg font-semibold text-ink-800">{c.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-600">{c.body}</p>
+                  <h3 className="h-display text-lg font-semibold text-ink-800 dark:text-white">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-white">{c.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -136,8 +136,8 @@ export default function WhyWiMate() {
                   <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-sky-100 to-wimate-50 ring-1 ring-wimate-500/20 text-wimate-600">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="h-display mt-4 text-base font-semibold text-ink-800">{w.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-600">{w.desc}</p>
+                  <h3 className="h-display mt-4 text-base font-semibold text-ink-800 dark:text-white">{w.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-white">{w.desc}</p>
                 </div>
               </Reveal>
             );
@@ -181,7 +181,7 @@ export default function WhyWiMate() {
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-transparent" />
                 </div>
                 <div className="flex items-center justify-between gap-3 p-4">
-                  <span className="font-display text-sm font-semibold text-ink-800">{t.name}</span>
+                  <span className="font-display text-sm font-semibold text-ink-800 dark:text-white">{t.name}</span>
                   <ArrowRight className="h-4 w-4 text-wimate-600 transition-transform group-hover:translate-x-0.5" />
                 </div>
               </Link>

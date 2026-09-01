@@ -13,7 +13,7 @@ export default function Turnkey() {
           {/* LEFT — image */}
           <Reveal className="lg:col-span-6">
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200">
+              <div className="overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 p-2">
                 <img
                   src="/wimate/products/iot-solution.png"
                   alt="WiMate turnkey IoT deployment"
@@ -31,15 +31,15 @@ export default function Turnkey() {
             </Reveal>
 
             <Reveal as="h2" delay={0.08}>
-              <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-ink-800">
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-ink-800 dark:text-slate-100">
                 Turnkey solutions
                 <br />
-                <span className="text-wimate-500">deployment approach</span>
+                <span className="text-wimate-500 dark:text-wimate-400">deployment approach</span>
               </h2>
             </Reveal>
 
             <Reveal as="p" delay={0.15}>
-              <p className="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-ink-600">
+              <p className="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-ink-600 dark:text-white">
                 We work with you to transform your organization by driving bold
                 ideas and pragmatic solutions.
               </p>
@@ -50,9 +50,9 @@ export default function Turnkey() {
                 {STEPS.map((s) => (
                   <li
                     key={s}
-                    className="flex items-start gap-3 text-[15px] text-ink-800"
+                    className="flex items-start gap-3 text-[15px] text-ink-800 dark:text-slate-200"
                   >
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-wimate-50 dark:bg-slate-800 text-wimate-600 dark:text-wimate-400 ring-1 ring-wimate-500/20 dark:ring-wimate-500/40">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
                     <span>{s}</span>

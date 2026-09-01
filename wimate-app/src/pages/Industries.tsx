@@ -79,7 +79,7 @@ export default function Industries() {
           <h1 className="mt-4 section-title max-w-4xl">
             Industries <span className="gradient-text-blue">we serve</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600">
+          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600 dark:text-white">
             Real deployments across building management, manufacturing, water, energy and logistics.
           </p>
         </div>
@@ -98,12 +98,12 @@ export default function Industries() {
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/40 via-transparent to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="h-display text-base font-semibold text-ink-800">{r.segment}</h3>
-                  <p className="mt-2 text-sm text-ink-600">{r.description}</p>
-                  <div className="mt-3 text-xs font-medium uppercase tracking-widest text-ink-500">
+                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-white">{r.segment}</h3>
+                  <p className="mt-2 text-sm text-ink-600 dark:text-white">{r.description}</p>
+                  <div className="mt-3 text-xs font-medium uppercase tracking-widest text-ink-500 dark:text-slate-400">
                     Deployed in
                   </div>
-                  <p className="mt-1 text-sm text-ink-700">{r.industries}</p>
+                  <p className="mt-1 text-sm text-ink-700 dark:text-white">{r.industries}</p>
                   <div className="mt-auto flex items-center gap-2 pt-4 text-sm font-medium text-wimate-600 group-hover:text-wimate-700">
                     View solution
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

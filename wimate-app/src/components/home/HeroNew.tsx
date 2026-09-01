@@ -40,22 +40,22 @@ export default function HeroNew() {
   const active = SLIDES[index];
 
   return (
-    <section className="relative bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
+    <section className="relative bg-transparent pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
       <div className="container-x">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* LEFT */}
           <div className="lg:col-span-6">
             <Reveal as="h1">
-              <span className="block font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-ink-800">
+              <span className="block font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-ink-800 dark:text-slate-100">
                 We make your
               </span>
-              <span className="mt-1 block font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-ink-800">
-                business <span className="text-wimate-500">grow.</span>
+              <span className="mt-1 block font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-ink-800 dark:text-slate-100">
+                business <span className="text-wimate-500 dark:text-wimate-400">grow.</span>
               </span>
             </Reveal>
 
             <Reveal as="p" delay={0.12}>
-              <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-ink-600">
+              <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-ink-600 dark:text-white">
                 We help you to optimize operations and sustain profitable growth
                 by adopting the IoT technology.
               </p>
@@ -79,7 +79,7 @@ export default function HeroNew() {
             <Reveal delay={0.1}>
               <div>
                 <div
-                  className="relative overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200"
+                  className="relative overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900"
                   role="region"
                   aria-label="WiMate solutions preview"
                 >
@@ -134,8 +134,8 @@ export default function HeroNew() {
                       tabIndex={i === index ? 0 : -1}
                       className={`absolute inset-0 font-display text-base sm:text-lg font-semibold tracking-tight transition-opacity duration-700 ease-in-out ${
                         i === index
-                          ? "opacity-100 text-ink-800"
-                          : "opacity-0 text-ink-800 pointer-events-none"
+                          ? "opacity-100 text-ink-800 dark:text-slate-100"
+                          : "opacity-0 text-ink-800 dark:text-slate-100 pointer-events-none"
                       }`}
                     >
                       {s.title}

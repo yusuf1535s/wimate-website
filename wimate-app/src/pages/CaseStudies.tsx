@@ -87,7 +87,7 @@ export default function CaseStudies() {
           <h1 className="mt-4 section-title max-w-4xl">
             Where WiMate is <span className="gradient-text-blue">deployed.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600">
+          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600 dark:text-white">
             Real industries, real sites, real WiMate deployments.
           </p>
         </div>
@@ -104,13 +104,13 @@ export default function CaseStudies() {
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                   <img src={d.image} alt={d.segment} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/20 to-transparent" />
-                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-ink-800 shadow-soft-sm">
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-ink-800 shadow-soft-sm dark:text-white">
                     {d.segment}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="h-display text-base font-semibold text-ink-800">{d.industry}</h3>
-                  <p className="mt-2 text-sm text-ink-600">{d.description}</p>
+                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-white">{d.industry}</h3>
+                  <p className="mt-2 text-sm text-ink-600 dark:text-white">{d.description}</p>
                   <div className="mt-5 flex items-center gap-2 text-sm font-medium text-wimate-600 group-hover:text-wimate-700">
                     View solution
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

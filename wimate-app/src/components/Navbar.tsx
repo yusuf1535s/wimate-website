@@ -1,9 +1,10 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight, Plus, Minus } from "lucide-react";
+import { Menu, X, ChevronRight, Plus, Minus, Sun, Moon } from "lucide-react";
 import { navItems, type NavItem } from "../data/content";
 import { useHoverOpen } from "../hooks/useHoverOpen";
+import { useTheme } from "../context/ThemeContext";
 import { NavBadgePill, MegaArrow } from "./NavMenuBits";
 import Logo from "./Logo";
 
@@ -45,10 +46,10 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
         drawerOpen
-          ? "bg-white border-b border-paper-200 shadow-soft-sm"
+          ? "bg-white dark:bg-slate-900 border-b border-paper-200 dark:border-slate-800 shadow-soft-sm"
           : scrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-paper-200 shadow-soft-sm"
-          : "bg-white/80 backdrop-blur-md border-b border-transparent"
+          ? "bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-paper-200 dark:border-slate-800 shadow-soft-sm"
+          : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-transparent"
       }`}
       onMouseLeave={closeAll}
     >
@@ -58,18 +59,22 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <DesktopNavItem
-              key={item.label}
-              item={item}
-              activeKey={activeKey}
-              setActiveKey={setActiveKey}
-            />
-          ))}
-        </nav>
+        <div className="hidden lg:flex items-center gap-6">
+          <nav className="flex items-center gap-1">
+            {navItems.map((item) => (
+              <DesktopNavItem
+                key={item.label}
+                item={item}
+                activeKey={activeKey}
+                setActiveKey={setActiveKey}
+              />
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
 
         <div className="flex items-center gap-2.5 lg:hidden">
+          <ThemeToggle />
           <Link
             to="/contact"
             onClick={() => setDrawerOpen(false)}
@@ -81,7 +86,7 @@ export default function Navbar() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setDrawerOpen((s) => !s)}
-            className="relative z-[110] inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-200 bg-white text-ink-800 shadow-soft-sm active:scale-95 touch-manipulation cursor-pointer"
+            className="relative z-[110] inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-ink-800 dark:text-slate-100 shadow-soft-sm active:scale-95 touch-manipulation cursor-pointer"
           >
             {drawerOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -101,7 +106,7 @@ export default function Navbar() {
             onMouseEnter={() => setActiveKey(activeKey)}
             onMouseLeave={closeAll}
           >
-            <div className="border-t border-paper-200 bg-white shadow-soft-lg">
+            <div className="border-t border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-lg">
               <div className="container-x py-8">
                 <ActivePanel
                   item={navItems.find((i) => i.label === activeKey)!}
@@ -121,7 +126,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] z-[95] bg-white overflow-y-auto border-t border-paper-200"
+            className="lg:hidden fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] z-[95] bg-white dark:bg-slate-900 overflow-y-auto border-t border-paper-200 dark:border-slate-800"
           >
             <motion.nav
               initial={{ y: -6, opacity: 0 }}
@@ -137,7 +142,7 @@ export default function Navbar() {
                   onNavigate={() => setDrawerOpen(false)}
                 />
               ))}
-              <div className="mt-4 pt-4 border-t border-paper-200 flex flex-col gap-2">
+              <div className="mt-4 pt-4 border-t border-paper-200 dark:border-slate-800 flex flex-col gap-2">
                 <Link
                   to="/contact"
                   onClick={() => setDrawerOpen(false)}
@@ -151,6 +156,24 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-paper-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-ink-700 dark:text-slate-200 hover:text-wimate-600 dark:hover:text-wimate-400 transition-colors shadow-soft-sm cursor-pointer"
+    >
+      {theme === "dark" ? (
+        <Sun className="h-4 w-4 text-amber-400" />
+      ) : (
+        <Moon className="h-4 w-4 text-slate-600" />
+      )}
+    </button>
   );
 }
 
@@ -188,7 +211,7 @@ function DesktopNavItem({
         end={item.to === "/"}
         className={({ isActive }) =>
           `relative px-3.5 py-2 text-sm font-semibold transition-colors ${
-            isActive ? "text-wimate-600" : "text-ink-700 hover:text-wimate-600"
+            isActive ? "text-wimate-600 dark:text-wimate-400" : "text-ink-700 dark:text-slate-200 hover:text-wimate-600 dark:hover:text-wimate-400"
           }`
         }
       >
@@ -198,7 +221,7 @@ function DesktopNavItem({
             {isActive && (
               <motion.span
                 layoutId="nav-pill"
-                className="absolute inset-0 -z-10 rounded-full bg-wimate-50 ring-1 ring-wimate-500/20"
+                className="absolute inset-0 -z-10 rounded-full bg-wimate-50 dark:bg-slate-800 ring-1 ring-wimate-500/20 dark:ring-wimate-500/40"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
@@ -222,8 +245,8 @@ function DesktopNavItem({
         className={({ isActive }) =>
           `relative inline-flex items-center gap-1 px-3.5 py-2 text-sm font-semibold transition-colors ${
             isOpen || isActive
-              ? "text-wimate-600"
-              : "text-ink-700 hover:text-wimate-600"
+              ? "text-wimate-600 dark:text-wimate-400"
+              : "text-ink-700 dark:text-slate-200 hover:text-wimate-600 dark:hover:text-wimate-400"
           }`
         }
       >
@@ -265,17 +288,17 @@ function MegaPanel({
     <div className="grid gap-8 lg:grid-cols-12">
       <div className="lg:col-span-3">
         <div className="chip">Products</div>
-        <h3 className="mt-3 h-display text-xl font-semibold text-ink-800">
+        <h3 className="mt-3 h-display text-xl font-semibold text-ink-800 dark:text-slate-100">
           Hardware engineered <br /> in India.
         </h3>
-        <p className="mt-2 text-sm text-ink-600">
+        <p className="mt-2 text-sm text-ink-600 dark:text-white">
           Industrial-grade gateways, HMIs, I/O cards and sensors with an
           18-month warranty.
         </p>
         <Link
           to={item.to}
           onClick={onNavigate}
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-wimate-600 hover:text-wimate-700"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-wimate-600 dark:text-wimate-400 hover:text-wimate-700"
         >
           View all products <ChevronRight className="h-4 w-4" />
         </Link>
@@ -286,7 +309,7 @@ function MegaPanel({
             <Link
               to={g.to}
               onClick={onNavigate}
-              className="group inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-wimate-600 hover:text-wimate-700"
+              className="group inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-wimate-600 dark:text-wimate-400 hover:text-wimate-700"
             >
               {g.title}
               <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -297,7 +320,7 @@ function MegaPanel({
                   <Link
                     to={it.to}
                     onClick={onNavigate}
-                    className="group flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm text-ink-800 transition-colors hover:bg-wimate-50 hover:text-wimate-700"
+                    className="group flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm text-ink-800 dark:text-slate-200 transition-colors hover:bg-wimate-50 dark:hover:bg-slate-800 hover:text-wimate-700 dark:hover:text-wimate-400"
                   >
                     <span className="font-medium">{it.label}</span>
                     <NavBadgePill badge={it.badge} />
@@ -323,17 +346,17 @@ function MenuPanel({
     <div className="grid gap-8 lg:grid-cols-12">
       <div className="lg:col-span-3">
         <div className="chip">{item.label}</div>
-        <h3 className="mt-3 h-display text-xl font-semibold text-ink-800">
+        <h3 className="mt-3 h-display text-xl font-semibold text-ink-800 dark:text-slate-100">
           Solutions for every <br /> industrial outcome.
         </h3>
-        <p className="mt-2 text-sm text-ink-600">
+        <p className="mt-2 text-sm text-ink-600 dark:text-white">
           From the shop floor to the rooftop, our solutions connect assets and
           surface insights.
         </p>
         <Link
           to={item.to}
           onClick={onNavigate}
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-wimate-600 hover:text-wimate-700"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-wimate-600 dark:text-wimate-400 hover:text-wimate-700"
         >
           View all <ChevronRight className="h-4 w-4" />
         </Link>
@@ -345,11 +368,11 @@ function MenuPanel({
               <Link
                 to={it.to}
                 onClick={onNavigate}
-                className="group flex items-center gap-2 rounded-lg px-2.5 py-2.5 text-sm text-ink-800 transition-colors hover:bg-wimate-50 hover:text-wimate-700"
+                className="group flex items-center gap-2 rounded-lg px-2.5 py-2.5 text-sm text-ink-800 dark:text-slate-200 transition-colors hover:bg-wimate-50 dark:hover:bg-slate-800 hover:text-wimate-700 dark:hover:text-wimate-400"
               >
                 <span className="font-medium">{it.label}</span>
                 <NavBadgePill badge={it.badge} />
-                <ChevronRight className="ml-auto h-4 w-4 text-ink-300 transition-transform group-hover:translate-x-0.5 group-hover:text-wimate-500" />
+                <ChevronRight className="ml-auto h-4 w-4 text-ink-300 dark:text-slate-600 transition-transform group-hover:translate-x-0.5 group-hover:text-wimate-500" />
               </Link>
             </li>
           ))}
@@ -379,8 +402,8 @@ function MobileNavItem({
         className={({ isActive }) =>
           `flex items-center justify-between rounded-xl border px-4 py-3 text-base font-semibold ${
             isActive
-              ? "border-wimate-500/30 bg-wimate-50 text-wimate-700"
-              : "border-paper-200 bg-white text-ink-800"
+              ? "border-wimate-500/30 bg-wimate-50 dark:bg-slate-800 text-wimate-700 dark:text-wimate-400"
+              : "border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 text-ink-800 dark:text-slate-100"
           }`
         }
       >
@@ -390,12 +413,12 @@ function MobileNavItem({
   }
 
   return (
-    <div className="rounded-xl border border-paper-200 bg-white">
+    <div className="rounded-xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-800/80">
       <button
         type="button"
         onClick={() => setOpen((s) => !s)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-semibold text-ink-800"
+        className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-semibold text-ink-800 dark:text-slate-100"
       >
         <span className="inline-flex items-center gap-1.5">
           {item.label}
@@ -404,9 +427,9 @@ function MobileNavItem({
           />
         </span>
         {open ? (
-          <Minus className="h-4 w-4 text-ink-400" />
+          <Minus className="h-4 w-4 text-ink-400 dark:text-white" />
         ) : (
-          <Plus className="h-4 w-4 text-ink-400" />
+          <Plus className="h-4 w-4 text-ink-400 dark:text-white" />
         )}
       </button>
       <AnimatePresence initial={false}>
@@ -416,13 +439,13 @@ function MobileNavItem({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-paper-200"
+            className="overflow-hidden border-t border-paper-200 dark:border-slate-800"
           >
             <div className="p-2">
               <Link
                 to={item.to}
                 onClick={onNavigate}
-                className="flex items-center justify-between rounded-lg bg-wimate-50/80 px-3 py-2 text-xs font-semibold text-wimate-700 hover:bg-wimate-100 transition-colors mb-2"
+                className="flex items-center justify-between rounded-lg bg-wimate-50/80 dark:bg-slate-800 px-3 py-2 text-xs font-semibold text-wimate-700 dark:text-wimate-400 hover:bg-wimate-100 dark:hover:bg-slate-700 transition-colors mb-2"
               >
                 <span>View all {item.label}</span>
                 <ChevronRight className="h-4 w-4" />
@@ -433,7 +456,7 @@ function MobileNavItem({
                     <Link
                       to={g.to}
                       onClick={onNavigate}
-                      className="block px-2 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-wimate-600"
+                      className="block px-2 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-wimate-600 dark:text-wimate-400"
                     >
                       {g.title}
                     </Link>
@@ -443,7 +466,7 @@ function MobileNavItem({
                           <Link
                             to={it.to}
                             onClick={onNavigate}
-                            className="flex items-center gap-2 rounded-md px-2 py-2 text-sm text-ink-800 hover:bg-wimate-50"
+                            className="flex items-center gap-2 rounded-md px-2 py-2 text-sm text-ink-800 dark:text-slate-200 hover:bg-wimate-50 dark:hover:bg-slate-800 hover:text-wimate-600 dark:hover:text-wimate-400"
                           >
                             <span className="font-medium">{it.label}</span>
                             <NavBadgePill badge={it.badge} />
@@ -461,7 +484,7 @@ function MobileNavItem({
                       <Link
                         to={it.to}
                         onClick={onNavigate}
-                        className="flex items-center gap-2 rounded-md px-2 py-2.5 text-sm text-ink-800 hover:bg-wimate-50"
+                        className="flex items-center gap-2 rounded-md px-2 py-2.5 text-sm text-ink-800 dark:text-slate-200 hover:bg-wimate-50 dark:hover:bg-slate-800 hover:text-wimate-600 dark:hover:text-wimate-400"
                       >
                         <span className="font-medium">{it.label}</span>
                         <NavBadgePill badge={it.badge} />

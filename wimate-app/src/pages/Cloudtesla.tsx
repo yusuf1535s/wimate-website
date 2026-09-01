@@ -10,7 +10,7 @@ type Bullet = string | { label?: string; group?: string; items: string[] };
 
 function BulletList({ items }: { items: Bullet[] }) {
   return (
-    <ul className="list-none space-y-2.5 pl-0 text-[15px] leading-relaxed text-ink-800">
+    <ul className="list-none space-y-2.5 pl-0 text-[15px] leading-relaxed text-ink-800 dark:text-white">
       {items.map((b, i) => {
         if (typeof b === "string") {
           return (
@@ -31,7 +31,7 @@ function BulletList({ items }: { items: Bullet[] }) {
                 {b.items.map((sub) => (
                   <span
                     key={sub}
-                    className="rounded-sm border border-paper-200 bg-white px-2.5 py-0.5 text-[12.5px] font-normal text-ink-700"
+                    className="rounded-sm border border-paper-200 bg-white px-2.5 py-0.5 text-[12.5px] font-normal text-ink-700 dark:text-white"
                   >
                     {sub}
                   </span>
@@ -71,7 +71,7 @@ function TwoColSplit({
         }`}
       >
         <div className={imageLeft ? "order-2 lg:order-1" : "order-2 lg:order-2"}>
-          <h3 className="mb-4 text-2xl font-bold tracking-tight text-ink-800">
+          <h3 className="mb-4 text-2xl font-bold tracking-tight text-ink-800 dark:text-white">
             {title}
           </h3>
           {children}
@@ -105,7 +105,7 @@ function CenteredTwoColText({
       } py-12 sm:py-16`}
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h3 className="mb-6 text-center text-2xl font-bold tracking-tight text-ink-800">
+        <h3 className="mb-6 text-center text-2xl font-bold tracking-tight text-ink-800 dark:text-white">
           {title}
         </h3>
         <div className="mx-auto max-w-5xl columns-1 md:columns-2 md:gap-12">
@@ -122,10 +122,10 @@ export default function Cloudtesla() {
       {/* Titlebar — matches wimate.in titlebar style */}
       <section className="border-b border-paper-200 bg-[#FAF6F7] py-10 sm:py-12">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-3 px-4 sm:px-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <h1 className="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl dark:text-white">
             {cloudteslaPage.hero.title}
           </h1>
-          <nav aria-label="Breadcrumb" className="text-sm text-ink-500">
+          <nav aria-label="Breadcrumb" className="text-sm text-ink-500 dark:text-slate-400">
             <ol className="flex items-center gap-1.5">
               {cloudteslaPage.breadcrumb.map((part, i, arr) => (
                 <li key={part} className="flex items-center gap-1.5">
@@ -134,7 +134,7 @@ export default function Cloudtesla() {
                       {part}
                     </Link>
                   ) : (
-                    <span className="text-ink-700">{part}</span>
+                    <span className="text-ink-700 dark:text-white">{part}</span>
                   )}
                   {i < arr.length - 1 && <span aria-hidden>/</span>}
                 </li>
@@ -147,10 +147,10 @@ export default function Cloudtesla() {
       {/* Intro + bullets (no card grid, no icon tiles) */}
       <section className="bg-[#F8F8F8] py-12 sm:py-14">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-          <p className="text-[15px] leading-relaxed text-ink-700">
+          <p className="text-[15px] leading-relaxed text-ink-700 dark:text-white">
             {cloudteslaPage.hero.intro}
           </p>
-          <ul className="mt-6 space-y-2 text-[15px] text-ink-800">
+          <ul className="mt-6 space-y-2 text-[15px] text-ink-800 dark:text-white">
             {cloudteslaPage.hero.benefits.map((b) => (
               <li key={b} className="relative pl-5">
                 <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-wimate-500" />
@@ -214,7 +214,7 @@ export default function Cloudtesla() {
       {/* Turnkey Solutions — simple 4-col image grid, no shadow cards */}
       <section className="bg-[#F8F8F8] py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h3 className="mb-8 text-center text-2xl font-bold tracking-tight text-ink-800">
+          <h3 className="mb-8 text-center text-2xl font-bold tracking-tight text-ink-800 dark:text-white">
             Turnkey Solutions
           </h3>
           <ul className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 md:gap-8">
@@ -229,7 +229,7 @@ export default function Cloudtesla() {
                       className="h-auto w-full transition-opacity duration-300 group-hover:opacity-80"
                     />
                   </div>
-                  <h4 className="mt-3 text-center text-sm font-semibold text-ink-800 group-hover:text-wimate-600 sm:text-[15px]">
+                  <h4 className="mt-3 text-center text-sm font-semibold text-ink-800 group-hover:text-wimate-600 sm:text-[15px] dark:text-white">
                     {t.name}
                   </h4>
                 </Link>

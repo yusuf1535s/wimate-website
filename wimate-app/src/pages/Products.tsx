@@ -8,17 +8,17 @@ import { solutions } from "../data/wimate";
 /* ---------- Helpers ---------- */
 function SpecTable({ rows }: { rows: ProductSpecRow[] }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-paper-200 bg-white shadow-soft-sm">
+    <div className="overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm">
           <tbody>
             {rows.map((r, i) => (
               <tr
                 key={r.label}
-                className={i !== rows.length - 1 ? "border-b border-paper-200" : ""}
+                className={i !== rows.length - 1 ? "border-b border-paper-200 dark:border-slate-800" : ""}
               >
-                <td className="w-2/5 px-4 py-3 font-medium text-ink-800 sm:px-6">{r.label}</td>
-                <td className="px-4 py-3 text-ink-700 sm:px-6">{r.value}</td>
+                <td className="w-2/5 px-4 py-3 font-medium text-ink-800 dark:text-slate-100 sm:px-6">{r.label}</td>
+                <td className="px-4 py-3 text-ink-700 dark:text-white sm:px-6">{r.value}</td>
               </tr>
             ))}
           </tbody>
@@ -34,9 +34,9 @@ function SpecGroups({ groups }: { groups: ProductSpecGroup[] }) {
       {groups.map((g) => (
         <div
           key={g.group}
-          className="overflow-hidden rounded-2xl border border-paper-200 bg-white shadow-soft-sm"
+          className="overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm"
         >
-          <div className="bg-paper-50 px-4 py-2.5 text-sm font-semibold text-ink-800 sm:px-6">
+          <div className="bg-paper-50 dark:bg-slate-800 px-4 py-2.5 text-sm font-semibold text-ink-800 dark:text-slate-100 sm:px-6">
             {g.group}
           </div>
           <div className="overflow-x-auto">
@@ -45,10 +45,10 @@ function SpecGroups({ groups }: { groups: ProductSpecGroup[] }) {
                 {g.rows.map((r, i) => (
                   <tr
                     key={r.label}
-                    className={i !== g.rows.length - 1 ? "border-b border-paper-200" : ""}
+                    className={i !== g.rows.length - 1 ? "border-b border-paper-200 dark:border-slate-800" : ""}
                   >
-                    <td className="w-2/5 px-4 py-2.5 font-medium text-ink-800 sm:px-6">{r.label}</td>
-                    <td className="px-4 py-2.5 text-ink-700 sm:px-6">{r.value}</td>
+                    <td className="w-2/5 px-4 py-2.5 font-medium text-ink-800 dark:text-slate-100 sm:px-6">{r.label}</td>
+                    <td className="px-4 py-2.5 text-ink-700 dark:text-white sm:px-6">{r.value}</td>
                   </tr>
                 ))}
               </tbody>
@@ -63,7 +63,7 @@ function SpecGroups({ groups }: { groups: ProductSpecGroup[] }) {
 /* ---------- Per-product section ---------- */
 function ProductSection({ product }: { product: WProduct }) {
   return (
-    <article id={product.slug} className="relative scroll-mt-28 border-t border-paper-200 first:border-t-0">
+    <article id={product.slug} className="relative scroll-mt-28 border-t border-paper-200 dark:border-slate-800 first:border-t-0">
       <div className="container-x py-12 sm:py-16 lg:py-20">
         <Reveal>
           <h2 className="section-title max-w-4xl">
@@ -72,8 +72,8 @@ function ProductSection({ product }: { product: WProduct }) {
               <span
                 className={`ml-3 align-middle rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${
                   product.badge === "New"
-                    ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200"
-                    : "bg-wimate-50 text-wimate-700 ring-1 ring-wimate-500/20"
+                    ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 ring-1 ring-emerald-200 dark:ring-emerald-800"
+                    : "bg-wimate-50 dark:bg-wimate-950/60 text-wimate-700 dark:text-wimate-400 ring-1 ring-wimate-500/20 dark:ring-wimate-500/40"
                 }`}
               >
                 {product.badge}
@@ -84,12 +84,12 @@ function ProductSection({ product }: { product: WProduct }) {
 
         <div className="mt-6 grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-7">
-            <p className="text-base sm:text-lg leading-relaxed text-ink-700">
+            <p className="text-base sm:text-lg leading-relaxed text-ink-700 dark:text-white">
               {product.description}
             </p>
           </Reveal>
           <Reveal className="lg:col-span-5" delay={0.1}>
-            <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200 bg-white">
+            <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 p-2">
               <img
                 src={product.image}
                 alt={product.title}
@@ -103,7 +103,7 @@ function ProductSection({ product }: { product: WProduct }) {
         {/* Features */}
         <div className="mt-12">
           <Reveal>
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
               Features
             </h3>
           </Reveal>
@@ -112,9 +112,9 @@ function ProductSection({ product }: { product: WProduct }) {
               {product.features.map((f) => (
                 <li
                   key={f}
-                  className="flex items-start gap-2.5 text-[15px] text-ink-800"
+                  className="flex items-start gap-2.5 text-[15px] text-ink-800 dark:text-slate-200"
                 >
-                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
+                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-wimate-50 dark:bg-slate-800 text-wimate-600 dark:text-wimate-400 ring-1 ring-wimate-500/20 dark:ring-wimate-500/40">
                     <CheckCircle2 className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </span>
                   {f}
@@ -128,12 +128,12 @@ function ProductSection({ product }: { product: WProduct }) {
         {product.architecture && (
           <div className="mt-12">
             <Reveal>
-              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
                 Architecture
               </h3>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="mt-5 overflow-hidden rounded-3xl ring-1 ring-paper-200 shadow-soft">
+              <div className="mt-5 overflow-hidden rounded-3xl ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 shadow-soft p-2">
                 <img
                   src={product.architecture}
                   alt={`${product.title} architecture`}
@@ -149,7 +149,7 @@ function ProductSection({ product }: { product: WProduct }) {
         {(product.specs || product.specGroups) && (
           <div className="mt-12">
             <Reveal>
-              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
                 Specifications
               </h3>
             </Reveal>
@@ -169,7 +169,7 @@ function ProductSection({ product }: { product: WProduct }) {
         {product.applications && (
           <div className="mt-12">
             <Reveal>
-              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
                 Applications
               </h3>
             </Reveal>
@@ -178,9 +178,9 @@ function ProductSection({ product }: { product: WProduct }) {
                 {product.applications.map((a) => (
                   <li
                     key={a}
-                    className="flex items-start gap-2.5 text-[15px] text-ink-800"
+                    className="flex items-start gap-2.5 text-[15px] text-ink-800 dark:text-slate-200"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500 dark:bg-wimate-400" />
                     {a}
                   </li>
                 ))}
@@ -193,18 +193,18 @@ function ProductSection({ product }: { product: WProduct }) {
         {product.variants && (
           <div className="mt-12">
             <Reveal>
-              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
                 Variants
               </h3>
             </Reveal>
             <Reveal delay={0.08}>
-              <ul className="mt-5 space-y-2 text-[15px] text-ink-800">
+              <ul className="mt-5 space-y-2 text-[15px] text-ink-800 dark:text-slate-200">
                 {product.variants.map((v) => (
                   <li
                     key={v}
                     className="flex items-start gap-2.5"
                   >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-wimate-500 dark:bg-wimate-400" />
                     {v}
                   </li>
                 ))}
@@ -212,7 +212,7 @@ function ProductSection({ product }: { product: WProduct }) {
             </Reveal>
             {product.variantsNote && (
               <Reveal delay={0.12}>
-                <p className="mt-4 rounded-2xl border border-paper-200 bg-paper-50 p-4 text-sm leading-relaxed text-ink-700">
+                <p className="mt-4 rounded-2xl border border-paper-200 dark:border-slate-800 bg-paper-50 dark:bg-slate-800 p-4 text-sm leading-relaxed text-ink-700 dark:text-white">
                   {product.variantsNote}
                 </p>
               </Reveal>
@@ -223,7 +223,7 @@ function ProductSection({ product }: { product: WProduct }) {
         {/* Notes */}
         {product.notes?.map((n, i) => (
           <Reveal key={i} delay={0.05}>
-            <p className="mt-6 rounded-2xl border border-paper-200 bg-paper-50 p-4 text-sm leading-relaxed text-ink-700">
+            <p className="mt-6 rounded-2xl border border-paper-200 dark:border-slate-800 bg-paper-50 dark:bg-slate-800 p-4 text-sm leading-relaxed text-ink-700 dark:text-white">
               {n}
             </p>
           </Reveal>
@@ -232,7 +232,7 @@ function ProductSection({ product }: { product: WProduct }) {
         {/* Product documentation */}
         <div className="mt-12">
           <Reveal>
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 sm:text-3xl">
+            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
               Product documentation
             </h3>
           </Reveal>
@@ -247,14 +247,14 @@ function ProductSection({ product }: { product: WProduct }) {
                   to="/contact"
                   className="card card-hover group block h-full p-6"
                 >
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-sky-100 to-wimate-50 ring-1 ring-wimate-500/20 text-wimate-600">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-sky-100 to-wimate-50 dark:from-slate-800 dark:to-slate-800/80 ring-1 ring-wimate-500/20 dark:ring-wimate-500/40 text-wimate-600 dark:text-wimate-400">
                     <d.icon className="h-5 w-5" />
                   </div>
-                  <h4 className="h-display mt-4 text-base font-semibold text-ink-800">
+                  <h4 className="h-display mt-4 text-base font-semibold text-ink-800 dark:text-slate-100">
                     {d.title}
                   </h4>
-                  <p className="mt-2 text-sm text-ink-600">{d.desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-wimate-600 group-hover:text-wimate-700">
+                  <p className="mt-2 text-sm text-ink-600 dark:text-white">{d.desc}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700">
                     Contact us
                   </span>
                 </Link>
@@ -282,7 +282,7 @@ export default function Products() {
           <h1 className="mt-4 section-title max-w-4xl">
             Industrial <span className="gradient-text-blue">IoT hardware</span> built in India
           </h1>
-          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600">
+          <p className="mt-5 max-w-2xl text-base sm:text-lg text-ink-600 dark:text-white">
             Unifier gateways, HMIs & I/O cards, and WiSense sensors. Designed,
             developed and manufactured in India. 18-month replacement warranty.
           </p>
@@ -290,7 +290,7 @@ export default function Products() {
       </section>
 
       {/* Connectivity */}
-      <div id="gateways" className="bg-paper-50/60">
+      <div id="gateways" className="bg-paper-50/60 dark:bg-slate-900/60">
         <Section
           eyebrow="Connectivity"
           title="Unifier Gateways & Wi-Link"
@@ -303,8 +303,8 @@ export default function Products() {
                   to={`#${p.slug}`}
                   className="card card-hover group flex h-full items-center justify-between p-4"
                 >
-                  <span className="text-sm font-medium text-ink-800">{p.title}</span>
-                  <span className="text-xs text-wimate-600 group-hover:text-wimate-700">View</span>
+                  <span className="text-sm font-medium text-ink-800 dark:text-slate-100">{p.title}</span>
+                  <span className="text-xs text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700">View</span>
                 </Link>
               </li>
             ))}
@@ -316,7 +316,7 @@ export default function Products() {
       ))}
 
       {/* HMI & IO */}
-      <div id="hmi" className="bg-paper-50/60">
+      <div id="hmi" className="bg-paper-50/60 dark:bg-slate-900/60">
         <Section
           eyebrow="HMI & IO"
           title="Touchscreen HMIs and IO cards"
@@ -329,8 +329,8 @@ export default function Products() {
                   to={`#${p.slug}`}
                   className="card card-hover group flex h-full items-center justify-between p-4"
                 >
-                  <span className="text-sm font-medium text-ink-800">{p.title}</span>
-                  <span className="text-xs text-wimate-600 group-hover:text-wimate-700">View</span>
+                  <span className="text-sm font-medium text-ink-800 dark:text-slate-100">{p.title}</span>
+                  <span className="text-xs text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700">View</span>
                 </Link>
               </li>
             ))}
@@ -342,7 +342,7 @@ export default function Products() {
       ))}
 
       {/* Sensors */}
-      <div id="sensors" className="bg-paper-50/60">
+      <div id="sensors" className="bg-paper-50/60 dark:bg-slate-900/60">
         <Section
           eyebrow="Sensors"
           title="WiSense Sensors"
@@ -355,14 +355,17 @@ export default function Products() {
                   to={`#${p.slug}`}
                   className="card card-hover group flex h-full items-center justify-between p-4"
                 >
-                  <span className="text-sm font-medium text-ink-800">{p.title}</span>
-                  <span className="text-xs text-wimate-600 group-hover:text-wimate-700">View</span>
+                  <span className="text-sm font-medium text-ink-800 dark:text-slate-100">{p.title}</span>
+                  <span className="text-xs text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700">View</span>
                 </Link>
               </li>
             ))}
           </ul>
         </Section>
       </div>
+      {sensors.map((p) => (
+        <ProductSection key={p.slug} product={p} />
+      ))}
       {sensors.map((p) => (
         <ProductSection key={p.slug} product={p} />
       ))}
@@ -389,8 +392,8 @@ export default function Products() {
           ].map((f, i) => (
             <Reveal key={f.t} delay={i * 0.04}>
               <div className="card card-hover h-full p-6">
-                <h3 className="h-display text-base font-semibold text-ink-800">{f.t}</h3>
-                <p className="mt-2 text-sm text-ink-700">{f.d}</p>
+                <h3 className="h-display text-base font-semibold text-ink-800 dark:text-white">{f.t}</h3>
+                <p className="mt-2 text-sm text-ink-700 dark:text-white">{f.d}</p>
               </div>
             </Reveal>
           ))}
@@ -406,7 +409,7 @@ export default function Products() {
             </svg>
           </Link>
         </div>
-        <p className="mt-4 text-center text-[11px] uppercase tracking-wider text-ink-500">
+        <p className="mt-4 text-center text-[11px] uppercase tracking-wider text-ink-500 dark:text-slate-400">
           Read about {solutions.length} turnkey solutions
         </p>
       </Section>

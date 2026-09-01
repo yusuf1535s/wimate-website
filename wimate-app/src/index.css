@@ -15,6 +15,15 @@
   --wm-border: #E5EAF2;
 }
 
+.dark {
+  color-scheme: dark;
+  --wm-bg: #090D16;
+  --wm-ink: #F8FAFC;
+  --wm-ink-2: #FFFFFF;
+  --wm-paper: #111827;
+  --wm-border: #1F2937;
+}
+
 html,
 body,
 #root {
@@ -35,6 +44,13 @@ body {
     radial-gradient(700px 400px at -10% 30%, rgba(46, 151, 255, 0.07), transparent 60%);
   background-attachment: fixed;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-image:
+    radial-gradient(900px 500px at 80% -10%, rgba(0, 110, 255, 0.22), transparent 60%),
+    radial-gradient(700px 400px at -10% 30%, rgba(14, 123, 229, 0.18), transparent 60%);
 }
 
 ::selection {
@@ -64,20 +80,20 @@ body {
   }
 
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-paper-200;
+    @apply bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-paper-200 dark:border-slate-800;
   }
   .glass-strong {
-    @apply bg-white/80 backdrop-blur-2xl border border-paper-200;
+    @apply bg-white/80 dark:bg-slate-900/90 backdrop-blur-2xl border border-paper-200 dark:border-slate-800;
   }
   .card {
-    @apply rounded-2xl bg-white border border-paper-200 shadow-soft-sm;
+    @apply rounded-2xl bg-white dark:bg-slate-900/90 border border-paper-200 dark:border-slate-800/90 shadow-soft-sm text-ink-800 dark:text-slate-100 transition-colors;
   }
   .card-hover {
-    @apply transition-all duration-300 hover:border-wimate-500/30 hover:shadow-soft-lg hover:-translate-y-0.5;
+    @apply transition-all duration-300 hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft-lg hover:-translate-y-0.5;
   }
   .card-hover:hover {
-    box-shadow: 0 20px 40px -12px rgba(0, 110, 255, 0.12),
-      0 4px 12px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 20px 40px -12px rgba(0, 110, 255, 0.18),
+      0 4px 12px rgba(15, 23, 42, 0.1);
   }
 
   .btn {
@@ -87,14 +103,14 @@ body {
     @apply btn text-white bg-gradient-to-b from-wimate-400 to-wimate-600 hover:from-wimate-400 hover:to-wimate-700 shadow-glow;
   }
   .btn-ghost {
-    @apply btn text-ink-800 border border-paper-300 bg-white hover:bg-paper-100 hover:border-wimate-500/40;
+    @apply btn text-ink-800 dark:text-slate-100 border border-paper-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-paper-100 dark:hover:bg-slate-700 hover:border-wimate-500/40;
   }
   .btn-outline {
-    @apply btn text-wimate-600 border border-wimate-500/30 hover:bg-wimate-50 hover:border-wimate-500/60;
+    @apply btn text-wimate-600 dark:text-wimate-400 border border-wimate-500/30 hover:bg-wimate-50 dark:hover:bg-slate-800 hover:border-wimate-500/60;
   }
 
   .chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-wimate-500/20 bg-wimate-50 px-3 py-1 text-xs font-medium text-wimate-600;
+    @apply inline-flex items-center gap-2 rounded-full border border-wimate-500/20 dark:border-wimate-500/40 bg-wimate-50 dark:bg-slate-900 px-3 py-1 text-xs font-medium text-wimate-600 dark:text-wimate-400;
   }
 
   .h-display {
@@ -102,28 +118,28 @@ body {
   }
 
   .gradient-text {
-    @apply bg-gradient-to-b from-ink-800 to-wimate-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-b from-ink-800 to-wimate-500 dark:from-white dark:to-sky-400 bg-clip-text text-transparent;
   }
   .gradient-text-blue {
-    @apply bg-gradient-to-r from-wimate-500 via-sky-500 to-sky-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-wimate-500 via-sky-500 to-sky-600 dark:from-sky-300 dark:via-sky-400 dark:to-wimate-400 bg-clip-text text-transparent;
   }
   .gradient-text-sky {
-    @apply bg-gradient-to-r from-sky-500 via-wimate-500 to-wimate-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-sky-500 via-wimate-500 to-wimate-600 dark:from-sky-300 dark:via-sky-400 dark:to-wimate-400 bg-clip-text text-transparent;
   }
 
   .divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-paper-300 to-transparent;
+    @apply h-px w-full bg-gradient-to-r from-transparent via-paper-300 dark:via-slate-800 to-transparent;
   }
 
   .ring-glow {
-    box-shadow: 0 0 0 4px rgba(0, 110, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 110, 255, 0.15);
   }
 
   .section-title {
-    @apply font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink-800 tracking-tight text-balance;
+    @apply font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink-800 dark:text-slate-100 tracking-tight text-balance;
   }
   .section-sub {
-    @apply mt-4 text-base sm:text-lg text-ink-600 max-w-2xl text-balance;
+    @apply mt-4 text-base sm:text-lg text-ink-600 dark:text-white max-w-2xl text-balance;
   }
 }
 
