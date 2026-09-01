@@ -60,13 +60,22 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button
-          aria-label="Toggle menu"
-          onClick={() => setDrawerOpen((s) => !s)}
-          className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-paper-200 bg-white text-ink-800 shadow-soft-sm"
-        >
-          {drawerOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2.5 lg:hidden">
+          <Link
+            to="/contact"
+            onClick={() => setDrawerOpen(false)}
+            className="rounded-xl bg-wimate-600 px-3.5 py-2 text-xs font-semibold text-white shadow-soft-sm hover:bg-wimate-700 transition-colors"
+          >
+            Contact
+          </Link>
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setDrawerOpen((s) => !s)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-200 bg-white text-ink-800 shadow-soft-sm"
+          >
+            {drawerOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mega menu surface (desktop) */}
@@ -98,17 +107,18 @@ export default function Navbar() {
       <AnimatePresence>
         {drawerOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white/95 backdrop-blur-2xl border-t border-paper-200 overflow-y-auto"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white/98 backdrop-blur-2xl border-t border-paper-200 overflow-y-auto pb-12"
           >
             <motion.nav
               initial={{ y: -8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="container-x py-6 flex flex-col gap-1"
+              className="container-x py-6 flex flex-col gap-2"
             >
               {navItems.map((item) => (
                 <MobileNavItem
@@ -117,6 +127,15 @@ export default function Navbar() {
                   onNavigate={() => setDrawerOpen(false)}
                 />
               ))}
+              <div className="mt-4 pt-4 border-t border-paper-200 flex flex-col gap-2">
+                <Link
+                  to="/contact"
+                  onClick={() => setDrawerOpen(false)}
+                  className="w-full text-center rounded-xl bg-wimate-600 py-3 text-sm font-semibold text-white shadow-soft-sm hover:bg-wimate-700 transition-colors"
+                >
+                  Get in Touch / Contact Us
+                </Link>
+              </div>
             </motion.nav>
           </motion.div>
         )}
@@ -390,9 +409,17 @@ function MobileNavItem({
             className="overflow-hidden border-t border-paper-200"
           >
             <div className="p-2">
+              <Link
+                to={item.to}
+                onClick={onNavigate}
+                className="flex items-center justify-between rounded-lg bg-wimate-50/80 px-3 py-2 text-xs font-semibold text-wimate-700 hover:bg-wimate-100 transition-colors mb-2"
+              >
+                <span>View all {item.label}</span>
+                <ChevronRight className="h-4 w-4" />
+              </Link>
               {item.kind === "mega" &&
                 item.groups.map((g) => (
-                  <div key={g.title} className="py-2">
+                  <div key={g.title} className="py-1">
                     <Link
                       to={g.to}
                       onClick={onNavigate}
@@ -418,7 +445,7 @@ function MobileNavItem({
                 ))}
 
               {item.kind === "menu" && (
-                <ul className="py-2">
+                <ul className="py-1">
                   {item.items.map((it) => (
                     <li key={it.label}>
                       <Link
