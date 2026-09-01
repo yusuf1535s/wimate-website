@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --wm-blue: #006EFF;
+  --wm-blue-50: #EAF2FF;
+  --wm-blue-100: #D6E5FF;
+  --wm-blue-600: #0058CC;
+  --wm-ink: #2F211B;
+  --wm-ink-2: #5B4E4A;
+  --wm-paper: #FFFFFF;
+  --wm-bg: #F8FAFC;
+  --wm-border: #E5EAF2;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--wm-bg);
+  color: var(--wm-ink-2);
+  font-family: "Inter", "Manrope", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(900px 500px at 80% -10%, rgba(0, 110, 255, 0.08), transparent 60%),
+    radial-gradient(700px 400px at -10% 30%, rgba(46, 151, 255, 0.07), transparent 60%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(0, 110, 255, 0.18);
+  color: #0E2F66;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f6fa;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c8d3e3, #9caec8);
+  border-radius: 8px;
+  border: 2px solid #f4f6fa;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #006EFF, #0058CC);
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-paper-200;
+  }
+  .glass-strong {
+    @apply bg-white/80 backdrop-blur-2xl border border-paper-200;
+  }
+  .card {
+    @apply rounded-2xl bg-white border border-paper-200 shadow-soft-sm;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:border-wimate-500/30 hover:shadow-soft-lg hover:-translate-y-0.5;
+  }
+  .card-hover:hover {
+    box-shadow: 0 20px 40px -12px rgba(0, 110, 255, 0.12),
+      0 4px 12px rgba(15, 23, 42, 0.06);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-wimate-500/50;
+  }
+  .btn-primary {
+    @apply btn text-white bg-gradient-to-b from-wimate-400 to-wimate-600 hover:from-wimate-400 hover:to-wimate-700 shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn text-ink-800 border border-paper-300 bg-white hover:bg-paper-100 hover:border-wimate-500/40;
+  }
+  .btn-outline {
+    @apply btn text-wimate-600 border border-wimate-500/30 hover:bg-wimate-50 hover:border-wimate-500/60;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-wimate-500/20 bg-wimate-50 px-3 py-1 text-xs font-medium text-wimate-600;
+  }
+
+  .h-display {
+    @apply font-display tracking-tight;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-b from-ink-800 to-wimate-500 bg-clip-text text-transparent;
+  }
+  .gradient-text-blue {
+    @apply bg-gradient-to-r from-wimate-500 via-sky-500 to-sky-600 bg-clip-text text-transparent;
+  }
+  .gradient-text-sky {
+    @apply bg-gradient-to-r from-sky-500 via-wimate-500 to-wimate-600 bg-clip-text text-transparent;
+  }
+
+  .divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-paper-300 to-transparent;
+  }
+
+  .ring-glow {
+    box-shadow: 0 0 0 4px rgba(0, 110, 255, 0.1);
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink-800 tracking-tight text-balance;
+  }
+  .section-sub {
+    @apply mt-4 text-base sm:text-lg text-ink-600 max-w-2xl text-balance;
+  }
+}
+
+@layer utilities {
+  .bg-grid-soft {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
