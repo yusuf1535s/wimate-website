@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, Plus, Minus } from "lucide-react";
@@ -13,6 +13,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeKey, setActiveKey] = useState<ActiveKey>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -21,16 +22,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close drawer & mega panel whenever location or route changes
   useEffect(() => {
-    document.body.style.overflow = drawerOpen ? "hidden" : "";
-  }, [drawerOpen]);
+    setDrawerOpen(false);
+    setActiveKey(null);
+  }, [location.pathname, location.hash]);
 
-  // Close any open mega when route changes
   useEffect(() => {
-    const close = () => setActiveKey(null);
-    window.addEventListener("hashchange", close);
-    return () => window.removeEventListener("hashchange", close);
-  }, []);
+    if (drawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
 
   const closeAll = () => setActiveKey(null);
 
@@ -38,8 +45,8 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-paper-200 shadow-soft-sm"
-          : "bg-white/70 backdrop-blur-md border-b border-transparent"
+          ? "bg-white/95 backdrop-blur-xl border-b border-paper-200 shadow-soft-sm"
+          : "bg-white/80 backdrop-blur-md border-b border-transparent"
       }`}
       onMouseLeave={closeAll}
     >
@@ -69,9 +76,10 @@ export default function Navbar() {
             Contact
           </Link>
           <button
+            type="button"
             aria-label="Toggle menu"
             onClick={() => setDrawerOpen((s) => !s)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-200 bg-white text-ink-800 shadow-soft-sm"
+            className="relative z-50 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-200 bg-white text-ink-800 shadow-soft-sm active:scale-95 touch-manipulation cursor-pointer"
           >
             {drawerOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -111,7 +119,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white/98 backdrop-blur-2xl border-t border-paper-200 overflow-y-auto pb-12"
+            className="lg:hidden fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] z-50 bg-white border-t border-paper-200 overflow-y-auto pb-16"
           >
             <motion.nav
               initial={{ y: -8, opacity: 0 }}
