@@ -56,12 +56,12 @@ function SolutionBlock({ s }: { s: Solution }) {
 
         {/* Main image */}
         <Reveal delay={0.12}>
-          <div className="mt-8 overflow-hidden rounded-3xl ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 shadow-soft p-2">
+          <div className="mt-8 mx-auto w-fit max-w-full overflow-hidden rounded-3xl ring-1 ring-paper-200 dark:ring-slate-800 bg-white dark:bg-slate-900 shadow-soft p-2">
             <img
               src={s.mainImage}
               alt={s.title}
               loading="lazy"
-              className="aspect-[16/7] w-full object-cover rounded-2xl"
+              className="h-auto max-h-[350px] sm:max-h-[380px] w-auto max-w-full rounded-2xl block object-contain"
             />
           </div>
         </Reveal>
@@ -151,25 +151,6 @@ function SolutionBlock({ s }: { s: Solution }) {
           </div>
         </div>
 
-        {/* Why Us */}
-        <div className="mt-12">
-          <Reveal>
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
-              Why Us?
-            </h3>
-          </Reveal>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {s.why.map((w, i) => (
-              <Reveal key={w.title} delay={i * 0.04}>
-                <div className="card card-hover h-full p-6">
-                  <h4 className="h-display text-base font-semibold text-ink-800 dark:text-slate-100">{w.title}</h4>
-                  <p className="mt-2 text-sm text-ink-600 dark:text-slate-400">{w.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
         {/* Industries deployed (Industry 4.0 only) */}
         {s.industries && (
           <div className="mt-12">
@@ -197,34 +178,6 @@ function SolutionBlock({ s }: { s: Solution }) {
             </div>
           </div>
         )}
-
-        {/* Other Solutions */}
-        <div className="mt-12">
-          <Reveal>
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
-              Other Solutions
-            </h3>
-          </Reveal>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {s.otherSolutions.map((o, i) => (
-              <Reveal key={o.href} delay={i * 0.04}>
-                <Link
-                  to={o.href}
-                  className="group block h-full overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm transition-all hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <img src={o.image} alt={o.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-transparent" />
-                  </div>
-                  <div className="flex items-center justify-between gap-3 p-4">
-                    <span className="font-display text-sm font-semibold text-ink-800 dark:text-slate-100">{o.title}</span>
-                    <ArrowUpRight className="h-4 w-4 text-wimate-600 dark:text-wimate-400 transition-transform group-hover:translate-x-0.5" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
       </div>
     </article>
   );
@@ -232,6 +185,9 @@ function SolutionBlock({ s }: { s: Solution }) {
 
 /* ----- page ----- */
 export default function Solutions() {
+  const whyItems = solutions[0]?.why || [];
+  const otherSolutionsList = solutions[0]?.otherSolutions || [];
+
   return (
     <>
       <section className="relative pt-32 pb-12 sm:pt-40">
@@ -263,6 +219,60 @@ export default function Solutions() {
       {solutions.map((s) => (
         <SolutionBlock key={s.slug} s={s} />
       ))}
+
+      {/* Global Why Us & Other Solutions section at the bottom */}
+      <section className="border-t border-paper-200 dark:border-slate-800 py-16 sm:py-20 bg-paper-50/50 dark:bg-slate-900/50">
+        <div className="container-x">
+          {/* Why Us */}
+          <div>
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
+                Why Us?
+              </h2>
+            </Reveal>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {whyItems.map((w, i) => (
+                <Reveal key={w.title} delay={i * 0.04}>
+                  <div className="card card-hover h-full p-6">
+                    <h3 className="h-display text-base font-semibold text-ink-800 dark:text-slate-100">{w.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-slate-400">{w.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Other Solutions */}
+          {otherSolutionsList.length > 0 && (
+            <div className="mt-16">
+              <Reveal>
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-800 dark:text-slate-100 sm:text-3xl">
+                  Other Solutions
+                </h2>
+              </Reveal>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {otherSolutionsList.map((o, i) => (
+                  <Reveal key={o.href} delay={i * 0.04}>
+                    <Link
+                      to={o.href}
+                      className="group block h-full overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm transition-all hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft"
+                    >
+                      <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <img src={o.image} alt={o.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-transparent" />
+                      </div>
+                      <div className="flex items-center justify-between gap-3 p-4">
+                        <span className="font-display text-sm font-semibold text-ink-800 dark:text-slate-100">{o.title}</span>
+                        <ArrowUpRight className="h-4 w-4 text-wimate-600 dark:text-wimate-400 transition-transform group-hover:translate-x-0.5" />
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }
