@@ -250,7 +250,7 @@ export default function Solutions() {
               <li key={s.slug}>
                 <Link
                   to={`#${s.slug}`}
-                  className="rounded-full border border-paper-200 bg-white px-3.5 py-1.5 text-sm font-medium text-ink-800 hover:border-wimate-500/30 hover:bg-wimate-50 dark:text-white"
+                  className="rounded-full border border-paper-200 bg-white px-3.5 py-1.5 text-sm font-medium text-ink-800 hover:border-wimate-500/30 hover:bg-wimate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-sky-400/40 dark:hover:bg-slate-700 dark:text-white"
                 >
                   {s.title}
                 </Link>

@@ -101,7 +101,9 @@ function CenteredTwoColText({
   return (
     <section
       className={`${
-        bg === "paper" ? "bg-paper-50" : "bg-white"
+        bg === "paper"
+          ? "bg-paper-50 dark:bg-slate-900"
+          : "bg-white dark:bg-slate-950"
       } py-12 sm:py-16`}
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -118,9 +120,9 @@ function CenteredTwoColText({
 
 export default function Cloudtesla() {
   return (
-    <div className="bg-[#F8F8F8]">
+    <div className="bg-[#F8F8F8] dark:bg-slate-950">
       {/* Titlebar — matches wimate.in titlebar style */}
-      <section className="border-b border-paper-200 bg-[#FAF6F7] py-10 sm:py-12">
+      <section className="border-b border-paper-200 dark:border-slate-800 bg-[#FAF6F7] dark:bg-slate-900 py-10 sm:py-12">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-3 px-4 sm:px-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <h1 className="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl dark:text-white">
             {cloudteslaPage.hero.title}
@@ -145,7 +147,7 @@ export default function Cloudtesla() {
       </section>
 
       {/* Intro + bullets (no card grid, no icon tiles) */}
-      <section className="bg-[#F8F8F8] py-12 sm:py-14">
+      <section className="bg-[#F8F8F8] dark:bg-slate-950 py-12 sm:py-14">
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <p className="text-[15px] leading-relaxed text-ink-700 dark:text-white">
             {cloudteslaPage.hero.intro}
@@ -212,7 +214,7 @@ export default function Cloudtesla() {
       />
 
       {/* Turnkey Solutions — simple 4-col image grid, no shadow cards */}
-      <section className="bg-[#F8F8F8] py-12 sm:py-16">
+      <section className="bg-[#F8F8F8] dark:bg-slate-950 py-12 sm:py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <h3 className="mb-8 text-center text-2xl font-bold tracking-tight text-ink-800 dark:text-white">
             Turnkey Solutions
@@ -229,7 +231,7 @@ export default function Cloudtesla() {
                       className="h-auto w-full transition-opacity duration-300 group-hover:opacity-80"
                     />
                   </div>
-                  <h4 className="mt-3 text-center text-sm font-semibold text-ink-800 group-hover:text-wimate-600 sm:text-[15px] dark:text-white">
+                  <h4 className="mt-3 text-center text-sm font-semibold text-ink-800 group-hover:text-wimate-600 dark:group-hover:text-sky-400 sm:text-[15px] dark:text-white">
                     {t.name}
                   </h4>
                 </Link>
