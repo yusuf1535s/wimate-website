@@ -89,12 +89,12 @@ function ProductSection({ product }: { product: WProduct }) {
             </p>
           </Reveal>
           <Reveal className="lg:col-span-5" delay={0.1}>
-            <div className="overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200">
+            <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200 bg-white">
               <img
                 src={product.image}
                 alt={product.title}
                 loading="lazy"
-                className="aspect-[4/3] w-full object-cover"
+                className="h-auto w-full object-contain"
               />
             </div>
           </Reveal>

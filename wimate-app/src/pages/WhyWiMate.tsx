@@ -104,8 +104,8 @@ export default function WhyWiMate() {
       <section className="relative py-12 sm:py-16">
         <div className="container-x">
           <Reveal>
-            <div className="overflow-hidden rounded-3xl ring-1 ring-paper-200 shadow-soft">
-              <img src={aboutPage.iotImage} alt="Internet of things" loading="lazy" className="aspect-[16/7] w-full object-cover" />
+            <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-3xl ring-1 ring-paper-200 shadow-soft bg-white">
+              <img src={aboutPage.iotImage} alt="Internet of things" loading="lazy" className="h-auto w-full object-contain" />
             </div>
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Loader2, Send, MapPin, Phone, Mail, Building2 } from "lucide-react";
+import { CheckCircle2, Loader2, Send } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { brand, contactPage, distributors } from "../data/wimate";
+import { brand } from "../data/wimate";
 
 export default function Contact() {
   const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
@@ -53,99 +53,25 @@ export default function Contact() {
 
       <section className="pb-16">
         <div className="container-x">
+          {/* Enquiry form — centered, full-width below lg */}
           <Reveal>
-            <div className="overflow-hidden rounded-3xl ring-1 ring-paper-200 shadow-soft">
-              <img
-                src={contactPage.hero.image}
-                alt="Contact WiMate"
-                loading="lazy"
-                className="aspect-[16/6] w-full object-cover sm:aspect-[16/5]"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="pb-16">
-        <div className="container-x grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-          {/* LEFT — exact WiMate contact block */}
-          <Reveal className="lg:col-span-5">
-            <div className="space-y-4">
-              <div className="card p-6">
-                <div className="text-xs uppercase tracking-widest text-ink-500">Contact Us</div>
-                <ul className="mt-3 space-y-3 text-sm text-ink-700">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
-                      <MapPin className="h-4 w-4" />
-                    </span>
-                    <span>
-                      {contactPage.address.lines.map((l, i) => (
-                        <span key={i} className="block">{l}</span>
-                      ))}
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
-                      <Mail className="h-4 w-4" />
-                    </span>
-                    <span className="flex flex-col gap-0.5">
-                      {contactPage.email.items.map((e) => (
-                        <a key={e.value} href={e.href} className="text-wimate-600 hover:text-wimate-700">
-                          {e.value}
-                        </a>
-                      ))}
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
-                      <Phone className="h-4 w-4" />
-                    </span>
-                    <a href={contactPage.phone.href} className="text-wimate-600 hover:text-wimate-700">
-                      {contactPage.phone.value}
-                    </a>
-                  </li>
-                </ul>
-                <div className="mt-4 border-t border-paper-200 pt-4 text-xs font-medium text-ink-500">
-                  {brand.hours}
-                </div>
-              </div>
-
-              {/* Distributors (matches wimate.in) */}
-              <div className="card p-6">
-                <div className="text-xs uppercase tracking-widest text-ink-500">Distributors</div>
-                <ul className="mt-3 space-y-4 text-sm text-ink-700">
-                  {distributors.map((d) => (
-                    <li key={d.company} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-wimate-50 text-wimate-600 ring-1 ring-wimate-500/20">
-                        <Building2 className="h-4 w-4" />
-                      </span>
-                      <span>
-                        <span className="block font-semibold text-ink-800">{d.city} — {d.company}</span>
-                        <span className="block">{d.address}</span>
-                        {d.phone && <a href={`tel:${d.phone.replace(/[^0-9+]/g, "")}`} className="block text-wimate-600 hover:text-wimate-700">Ph: {d.phone}</a>}
-                        {d.email && <a href={`mailto:${d.email}`} className="block text-wimate-600 hover:text-wimate-700">{d.email}</a>}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* RIGHT — enquiry form */}
-          <Reveal className="lg:col-span-7" delay={0.1}>
-            <form onSubmit={onSubmit} className="card relative overflow-hidden p-6 sm:p-8">
+            <form onSubmit={onSubmit} className="card relative w-full overflow-hidden p-6 sm:p-8 lg:p-10">
               <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-sky-100 blur-3xl" />
-              <h2 className="h-display relative text-lg font-semibold text-ink-800">Send us a message</h2>
-              <p className="relative mt-1 text-sm text-ink-600">
+              <h2 className="h-display relative text-2xl font-bold text-ink-800">
+                Send us a message
+              </h2>
+              <p className="relative mt-2 text-sm text-ink-600">
                 We will get back within one business day. We will never share your data.
               </p>
-              <div className="relative mt-6 grid gap-4 sm:grid-cols-2">
+
+              <div className="relative mt-8 space-y-5">
                 <Field label="Full name" value={data.name} onChange={(v) => setData({ ...data, name: v })} required />
                 <Field label="Work email" type="email" value={data.email} onChange={(v) => setData({ ...data, email: v })} required />
-                <Field label="Company" value={data.company} onChange={(v) => setData({ ...data, company: v })} />
-                <Field label="Phone" value={data.phone} onChange={(v) => setData({ ...data, phone: v })} />
-                <div className="sm:col-span-2">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="Company" value={data.company} onChange={(v) => setData({ ...data, company: v })} />
+                  <Field label="Phone" value={data.phone} onChange={(v) => setData({ ...data, phone: v })} />
+                </div>
+                <div>
                   <label className="text-xs font-medium text-ink-500">I'm interested in</label>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {[
@@ -170,18 +96,19 @@ export default function Contact() {
                     ))}
                   </div>
                 </div>
-                <div className="sm:col-span-2">
+                <div>
                   <label className="text-xs font-medium text-ink-500">Tell us about your site / goals</label>
                   <textarea
                     value={data.message}
                     onChange={(e) => setData({ ...data, message: e.target.value })}
-                    rows={4}
+                    rows={5}
                     className="mt-2 w-full rounded-xl border border-paper-200 bg-white px-3.5 py-2.5 text-sm text-ink-800 placeholder-ink-400 outline-none transition-colors focus:border-wimate-500/60 focus:ring-2 focus:ring-wimate-500/20"
                     placeholder="e.g. 3 plants, 80 machines, looking to monitor OEE and energy."
                   />
                 </div>
               </div>
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+
+              <div className="relative mt-8 flex flex-col-reverse items-stretch gap-3 border-t border-paper-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-xs text-ink-500">
                   By submitting, you agree to our terms.
                 </p>
@@ -235,3 +162,4 @@ function Field({ label, value, onChange, type = "text", required }: {
     </div>
   );
 }
+
