@@ -2,6 +2,7 @@
   "name": "wimate-website",
   "private": true,
   "scripts": {
-    "build": "cd wimate-app && npm install && npm run build"
+    "dev": "cd wimate-app && npm run dev",
+    "build": "cd wimate-app && npm install --legacy-peer-deps && npm run build"
   }
 }

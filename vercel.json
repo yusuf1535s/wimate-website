@@ -1,6 +1,6 @@
 {
   "framework": "vite",
-  "installCommand": "cd wimate-app && npm install",
+  "installCommand": "cd wimate-app && npm install --legacy-peer-deps",
   "buildCommand": "cd wimate-app && npm run build",
   "outputDirectory": "wimate-app/dist",
   "rewrites": [
