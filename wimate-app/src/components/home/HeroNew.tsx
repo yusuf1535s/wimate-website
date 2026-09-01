@@ -1,14 +1,44 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
+import { solutions } from "../../data/wimate";
 
 /**
  * Home-only hero. Clean, simple, white/light.
  * - Headline + paragraph + blue "Solutions" CTA on the left
- * - One large industrial image on the right
- * - No chips, no floating data cards, no SaaS decorations
+ * - Dynamic image + crossfading title on the right, driven by the `solutions`
+ *   list from the data layer (8 slides, auto-rotates, manual dot pager, click
+ *   through to the corresponding solution anchor)
  */
+const ROTATE_MS = 4000;
+
+type Slide = {
+  src: string;
+  title: string;
+  slug: string;
+};
+
+const SLIDES: Slide[] = solutions
+  .filter((s) => !!s.mainImage)
+  .map((s) => ({
+    src: s.mainImage,
+    title: s.title,
+    slug: s.slug,
+  }));
+
 export default function HeroNew() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length);
+    }, ROTATE_MS);
+    return () => clearInterval(id);
+  }, []);
+
+  const active = SLIDES[index];
+
   return (
     <section className="relative bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
       <div className="container-x">
@@ -44,16 +74,74 @@ export default function HeroNew() {
             </Reveal>
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT — dynamic image carousel driven by solutions data */}
           <div className="relative lg:col-span-6">
             <Reveal delay={0.1}>
-              <div className="overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200">
-                <img
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
-                  alt="Industrial IoT operations"
-                  className="aspect-[5/4] w-full object-cover"
-                  loading="eager"
-                />
+              <div>
+                <div
+                  className="relative overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200"
+                  role="region"
+                  aria-label="WiMate solutions preview"
+                >
+                  <Link
+                    to={`/solutions#${active.slug}`}
+                    aria-label={`${active.title} — learn more`}
+                    className="block aspect-[5/4] w-full"
+                  >
+                    {SLIDES.map((s, i) => (
+                      <img
+                        key={s.slug}
+                        src={s.src}
+                        alt={s.title}
+                        loading={i === 0 ? "eager" : "lazy"}
+                        aria-hidden={i !== index}
+                        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
+                          i === index ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    ))}
+                  </Link>
+
+                  {/* dot pager — manual control + visual progress */}
+                  <div className="absolute inset-x-0 bottom-3 flex justify-center gap-2">
+                    {SLIDES.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        aria-label={`Show ${SLIDES[i].title}`}
+                        onClick={() => setIndex(i)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          i === index
+                            ? "w-6 bg-white"
+                            : "w-1.5 bg-white/50 hover:bg-white/80"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* crossfading caption below the image (driven by active solution) */}
+                <div
+                  className="relative mt-4 h-7 sm:h-8"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+                  {SLIDES.map((s, i) => (
+                    <Link
+                      key={s.slug}
+                      to={`/solutions#${s.slug}`}
+                      aria-hidden={i !== index}
+                      tabIndex={i === index ? 0 : -1}
+                      className={`absolute inset-0 font-display text-base sm:text-lg font-semibold tracking-tight transition-opacity duration-700 ease-in-out ${
+                        i === index
+                          ? "opacity-100 text-ink-800"
+                          : "opacity-0 text-ink-800 pointer-events-none"
+                      }`}
+                    >
+                      {s.title}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>

@@ -2,72 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import Reveal from "./Reveal";
-
-type Item = {
-  title: string;
-  bullets: string[];
-};
-
-const ITEMS: Item[] = [
-  {
-    title: "Energy Auditors & Building Consultants",
-    bullets: [
-      "ECM effectiveness monitoring",
-      "Benchmarking based on building type, industry, asset and area",
-      "Better analytics tool",
-      "Replace legacy EMS and BMS for the end customer",
-      "Low cost and monthly subscription charges",
-    ],
-  },
-  {
-    title: "Service Integrators & Solution Providers",
-    bullets: [
-      "Faster installation due to plug n play hardware",
-      "No design or coding effort needed as UI is readymade",
-      "24×7 monitoring of all parameters",
-      "Alerts based on configurable thresholds",
-      "Brand integration — your logo in our platform",
-    ],
-  },
-  {
-    title: "Manufacturing Units",
-    bullets: [
-      "Production count, idle & downtime",
-      "Operator and shift-wise efficiency",
-      "Energy, water, compressed air, steam and fuel monitoring",
-      "Predictive maintenance for pumps, motors, DG and UPS",
-      "Low cost and monthly subscription charges",
-    ],
-  },
-  {
-    title: "Software Providers — IoT & Energy",
-    bullets: [
-      "Plug & play hardware",
-      "No coding skills needed to use",
-      "Affordable subscription pricing",
-      "18 months hardware warranty",
-      "Support over phone, email and on-site",
-    ],
-  },
-  {
-    title: "Equipment Leasers & AMC Providers",
-    bullets: [
-      "Location tracking and asset management",
-      "Ticketing and complaint management",
-      "Service level agreement tracking",
-      "Prescheduled maintenance tracking",
-      "Asset lifecycle and operator analytics",
-    ],
-  },
-  {
-    title: "None of the above",
-    bullets: [
-      "No worries — we are here to help.",
-      "Contact us for custom-designed products and solutions for you.",
-      "Reach us at sales@wimate.in for a tailored proposal.",
-    ],
-  },
-];
+import { benefitsForYou } from "../../data/wimate";
 
 export default function Benefits() {
   const [open, setOpen] = useState<number>(0);
@@ -91,7 +26,7 @@ export default function Benefits() {
 
             <Reveal delay={0.16}>
               <ul className="mt-7 space-y-3">
-                {ITEMS.map((it, i) => {
+                {benefitsForYou.map((it, i) => {
                   const isOpen = open === i;
                   return (
                     <li
@@ -139,7 +74,7 @@ export default function Benefits() {
                             className="overflow-hidden"
                           >
                             <ul className="space-y-2 px-5 pb-5 text-sm text-ink-700">
-                              {it.bullets.map((b) => (
+                              {it.items.map((b: string) => (
                                 <li
                                   key={b}
                                   className="flex items-start gap-2"
@@ -164,8 +99,8 @@ export default function Benefits() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-paper-200">
                 <img
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
-                  alt="Industrial IoT operations"
+                  src="/wimate/products/lower-operations.png"
+                  alt="Lower operations cost with WiMate"
                   className="aspect-[4/5] w-full object-cover"
                   loading="lazy"
                 />

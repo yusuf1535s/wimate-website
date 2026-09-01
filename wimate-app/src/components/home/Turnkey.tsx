@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import Reveal from "./Reveal";
+import { turnkeySteps } from "../../data/wimate";
 
-const STEPS = [
-  "We understand your needs",
-  "Visit the site for a survey (optional)",
-  "Build a suitable package for you",
-  "Supply the necessary hardware",
-  "Install and commission all the equipment",
-  "Create your User ID for Cloud access",
-  "And done! You are ready to go !!!",
-];
+const STEPS = turnkeySteps;
 
 export default function Turnkey() {
   return (
@@ -22,9 +15,9 @@ export default function Turnkey() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl shadow-soft ring-1 ring-paper-200">
                 <img
-                  src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80"
-                  alt="Industrial IoT deployment"
-                  className="aspect-[4/3] w-full object-cover"
+                  src="/wimate/products/iot-solution.png"
+                  alt="WiMate turnkey IoT deployment"
+                  className="h-auto w-full object-contain"
                   loading="lazy"
                 />
               </div>

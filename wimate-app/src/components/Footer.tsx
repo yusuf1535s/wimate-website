@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./Logo";
-import { brand } from "../data/content";
+import { brand, distributors, contactPage } from "../data/wimate";
 import { LinkedInIcon, FacebookIcon } from "./SocialIcons";
 
 export default function Footer() {
@@ -10,11 +10,12 @@ export default function Footer() {
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-wimate-500/40 to-transparent" />
       <div className="container-x py-16">
         <div className="grid gap-10 lg:grid-cols-12">
+          {/* About */}
           <div className="lg:col-span-4">
             <Logo className="h-12 w-auto" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-600">
-              End-to-end Industrial IoT — designed, developed and manufactured
-              in India. Hardware, cloud platform and analytics on a single stack.
+              We believe that the world around us can be simple. The same ideology
+              runs through our approach, products and solutions.
             </p>
             <div className="mt-6 flex items-center gap-2">
               <a
@@ -45,18 +46,21 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Solutions */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-500">
               Solutions
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {[
-                ["Industry 4.0", "/solutions#industry-4-0"],
-                ["Energy Management", "/solutions#energy-management"],
                 ["Building Management", "/solutions#building-management"],
-                ["Machine Health", "/solutions#machine-health"],
-                ["Smart Logistics", "/solutions#smart-logistics"],
-                ["Asset Management", "/solutions#asset-management"],
+                ["Industry 4.0", "/solutions#industry-4-0"],
+                ["RO Plant Monitoring", "/solutions#ro-plant"],
+                ["Sewage Treatment Plant", "/solutions#stp-monitoring"],
+                ["Energy Management", "/solutions#energy-management"],
+                ["Machine Health Monitoring", "/solutions#machine-health"],
+                ["Connected Logistics", "/solutions#connected-logistics"],
+                ["Asset Mgmt. & Ticketing", "/solutions#asset-management-ticketing"],
               ].map(([l, h]) => (
                 <li key={l}>
                   <Link to={h} className="text-ink-700 hover:text-wimate-600 transition-colors">
@@ -67,16 +71,24 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Products */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-500">
               Products
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {[
-                ["Unifier Gateways", "/products#gateways"],
-                ["HMI & I/O", "/products#hmi"],
-                ["WiSense Sensors", "/products#sensors"],
-                ["WiMate Cloud", "/products#cloud"],
+                ["Unifier 300 — 3G/4G", "/products#unifier-300"],
+                ["Unifier 400 — Sensing", "/products#unifier-400"],
+                ["Unifier 500 — Multiport", "/products#unifier-500"],
+                ["Wi-link", "/products#wi-link-100"],
+                ["IO Card", "/products#io-card"],
+                ["HMI 4.3\"", "/products#hmi-4-3"],
+                ["HMI 7\"", "/products#hmi-7"],
+                ["WiSense 100 (Temp / RH / CO2)", "/products#wisense-100"],
+                ["WiSense 200 (Vibration)", "/products#wisense-200"],
+                ["WiSense 300 (Occupancy)", "/products#wisense-300"],
+                ["Cloudtesla IoT Platform", "/cloudtesla"],
               ].map(([l, h]) => (
                 <li key={l}>
                   <Link to={h} className="text-ink-700 hover:text-wimate-600 transition-colors">
@@ -87,39 +99,52 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Company */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-500">
               Company
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
               {[
-                ["Why WiMate", "/why-wimate"],
-                ["Industries", "/industries"],
-                ["Case Studies", "/case-studies"],
+                ["About Us", "/why-wimate"],
                 ["Contact", "/contact"],
+                ["Mail", "https://mail.google.com"],
+                ["Payroll", "https://wimate.keka.com"],
+                ["Privacy", "https://www.wimate.in/privacy-policy-2/"],
               ].map(([l, h]) => (
                 <li key={l}>
-                  <Link to={h} className="text-ink-700 hover:text-wimate-600 transition-colors">
-                    {l}
-                  </Link>
+                  {h.startsWith("http") ? (
+                    <a href={h} target="_blank" rel="noreferrer" className="text-ink-700 hover:text-wimate-600 transition-colors">
+                      {l}
+                    </a>
+                  ) : (
+                    <Link to={h} className="text-ink-700 hover:text-wimate-600 transition-colors">
+                      {l}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Contact */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-500">
-              Contact
+              Contact Us
             </h4>
             <ul className="mt-4 space-y-3 text-sm text-ink-700">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-wimate-500" />
-                <span>{brand.address}</span>
+                <span>
+                  {contactPage.address.lines.map((l, i) => (
+                    <span key={i} className="block">{l}</span>
+                  ))}
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-wimate-500" />
-                <a href={`tel:${brand.phone}`} className="hover:text-wimate-600">
-                  {brand.phone}
+                <a href={contactPage.phone.href} className="hover:text-wimate-600">
+                  {contactPage.phone.value}
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -128,13 +153,45 @@ export default function Footer() {
                   {brand.email}
                 </a>
               </li>
+              <li className="text-xs text-ink-500">{brand.hours}</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-paper-200 pt-6 text-xs text-ink-500 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Wimate Technology Solutions Pvt Ltd. All rights reserved.</p>
-          <p>Designed & manufactured in India · Make in India</p>
+        {/* Distributors (matches wimate.in footer) */}
+        <div className="mt-12 border-t border-paper-200 pt-8">
+          <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-500">
+            Distributors
+          </h4>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {distributors.map((d) => (
+              <li key={d.company} className="rounded-xl border border-paper-200 bg-paper-50/60 p-4 text-sm">
+                <div className="text-xs font-semibold uppercase tracking-widest text-wimate-600">
+                  {d.city}
+                </div>
+                <div className="mt-1 font-semibold text-ink-800">{d.company}</div>
+                <div className="mt-1 text-xs leading-relaxed text-ink-600">{d.address}</div>
+                {d.phone && (
+                  <a href={`tel:${d.phone.replace(/[^0-9+]/g, "")}`} className="mt-1 block text-xs text-wimate-600 hover:text-wimate-700">
+                    Ph: {d.phone}
+                  </a>
+                )}
+                {d.email && (
+                  <a href={`mailto:${d.email}`} className="block text-xs text-wimate-600 hover:text-wimate-700">
+                    {d.email}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-paper-200 pt-6 text-xs text-ink-500 sm:flex-row sm:items-center">
+          <p>© Copyright 2026 Wimate Technology Solutions Pvt Ltd</p>
+          <ul className="flex items-center gap-4">
+            <li><Link to="/contact" className="hover:text-wimate-600">Contact</Link></li>
+            <li><a href="https://www.wimate.in/privacy-policy-2/" target="_blank" rel="noreferrer" className="hover:text-wimate-600">Privacy</a></li>
+          </ul>
         </div>
       </div>
     </footer>
