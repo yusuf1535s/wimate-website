@@ -99,19 +99,19 @@ export default function CaseStudies() {
             <Reveal key={d.segment} delay={i * 0.04}>
               <Link
                 to={d.href}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-paper-200 bg-white shadow-soft-sm transition-all hover:border-wimate-500/30 hover:shadow-soft"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm transition-all hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                   <img src={d.image} alt={d.segment} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/20 to-transparent" />
-                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-ink-800 shadow-soft-sm dark:text-white">
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 dark:bg-slate-800/90 px-2.5 py-1 text-xs font-semibold text-ink-800 dark:text-slate-100 shadow-soft-sm">
                     {d.segment}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-white">{d.industry}</h3>
-                  <p className="mt-2 text-sm text-ink-600 dark:text-white">{d.description}</p>
-                  <div className="mt-5 flex items-center gap-2 text-sm font-medium text-wimate-600 group-hover:text-wimate-700">
+                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-slate-100">{d.industry}</h3>
+                  <p className="mt-2 text-sm text-ink-600 dark:text-slate-300">{d.description}</p>
+                  <div className="mt-5 flex items-center gap-2 text-sm font-medium text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700 dark:group-hover:text-wimate-300">
                     View solution
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </div>

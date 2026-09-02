@@ -91,20 +91,20 @@ export default function Industries() {
             <Reveal key={r.segment} delay={i * 0.04}>
               <Link
                 to={r.href}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-paper-200 bg-white shadow-soft-sm transition-all hover:border-wimate-500/30 hover:shadow-soft sm:flex-row"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm transition-all hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft sm:flex-row"
               >
                 <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden sm:aspect-auto sm:w-56">
                   <img src={r.image} alt={r.segment} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/40 via-transparent to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-white">{r.segment}</h3>
-                  <p className="mt-2 text-sm text-ink-600 dark:text-white">{r.description}</p>
+                  <h3 className="h-display text-base font-semibold text-ink-800 dark:text-slate-100">{r.segment}</h3>
+                  <p className="mt-2 text-sm text-ink-600 dark:text-slate-300">{r.description}</p>
                   <div className="mt-3 text-xs font-medium uppercase tracking-widest text-ink-500 dark:text-slate-400">
                     Deployed in
                   </div>
-                  <p className="mt-1 text-sm text-ink-700 dark:text-white">{r.industries}</p>
-                  <div className="mt-auto flex items-center gap-2 pt-4 text-sm font-medium text-wimate-600 group-hover:text-wimate-700">
+                  <p className="mt-1 text-sm text-ink-700 dark:text-slate-200">{r.industries}</p>
+                  <div className="mt-auto flex items-center gap-2 pt-4 text-sm font-medium text-wimate-600 dark:text-wimate-400 group-hover:text-wimate-700 dark:group-hover:text-wimate-300">
                     View solution
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </div>

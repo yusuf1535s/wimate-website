@@ -174,15 +174,15 @@ export default function WhyWiMate() {
             <Reveal key={t.href} delay={i * 0.04}>
               <Link
                 to={t.href}
-                className="group block h-full overflow-hidden rounded-2xl border border-paper-200 bg-white shadow-soft-sm transition-all hover:border-wimate-500/30 hover:shadow-soft"
+                className="group block h-full overflow-hidden rounded-2xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-soft-sm transition-all hover:border-wimate-500/30 dark:hover:border-wimate-500/50 hover:shadow-soft"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <img src={t.image} alt={t.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-transparent" />
                 </div>
                 <div className="flex items-center justify-between gap-3 p-4">
-                  <span className="font-display text-sm font-semibold text-ink-800 dark:text-white">{t.name}</span>
-                  <ArrowRight className="h-4 w-4 text-wimate-600 transition-transform group-hover:translate-x-0.5" />
+                  <span className="font-display text-sm font-semibold text-ink-800 dark:text-slate-100">{t.name}</span>
+                  <ArrowRight className="h-4 w-4 text-wimate-600 dark:text-wimate-400 transition-transform group-hover:translate-x-0.5" />
                 </div>
               </Link>
             </Reveal>
@@ -202,7 +202,7 @@ export default function WhyWiMate() {
             if (!client) return null;
             return (
               <li key={name} className="flex items-center justify-center" title={name}>
-                <div className="grid h-16 w-full place-items-center rounded-xl border border-paper-200 bg-white p-3">
+                <div className="grid h-16 w-full place-items-center rounded-xl border border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3">
                   <img src={client.image} alt={name} loading="lazy" className="max-h-10 w-auto max-w-[150px] object-contain" />
                 </div>
               </li>
